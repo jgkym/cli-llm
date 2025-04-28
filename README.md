@@ -1,4 +1,4 @@
-<div style='text-align:center'>
+<div align='center'>
 <h1>cli-llm</h1>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
