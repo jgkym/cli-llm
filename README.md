@@ -100,4 +100,4 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` file for more information. *(You should create a LICENSE file, typically containing the standard MIT License text)*
+Distributed under the MIT License. See `LICENSE` file for more information.
