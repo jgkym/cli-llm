@@ -12,7 +12,7 @@ Stop context-switching and bring the power of LLMs to your terminal workflows. `
 
 ## About
 
-Working in the terminal often involves repetitive text manipulation or generation tasks – drafting casual messages, refining technical writing, formatting commit messages, and more. `cli-llm` aims to streamline these tasks by integrating LLM capabilities directly into your CLI environment.
+Working in the terminal often involves repetitive text manipulation or generation tasks – asking, refining technical writing, formatting commit messages, and more. `cli-llm` aims to streamline these tasks by integrating LLM capabilities directly into your CLI environment.
 
 Instead of copying text to a separate web UI or application, you can use pre-defined modes within `cli-llm` to instantly apply LLM processing to your input, keeping you focused and efficient.
 
