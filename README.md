@@ -48,18 +48,13 @@ Follow these steps to get a local copy up and running.
     git clone https://github.com/jgkym/cli-llm  
     cd cli-llm
     ```
-2.  **Create and activate a virtual environment (recommended):**
-    ```bash
-    uv init   
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
-3.  **Install dependencies:**
+2.  **Install dependencies:**
     *(You should create a `requirements.txt` file)*
     ```bash
     uv sync
     ```
     
-4.  **Set up Environment Variables:**
+3.  **Set up Environment Variables:**
     * Create a environment file:
         ```bash
         touch .env
