@@ -49,7 +49,6 @@ Follow these steps to get a local copy up and running.
     cd cli-llm
     ```
 2.  **Install dependencies:**
-    *(You should create a `requirements.txt` file)*
     ```bash
     uv sync
     ```
