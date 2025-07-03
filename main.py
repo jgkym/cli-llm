@@ -53,7 +53,7 @@ def main(config: Config) -> None:
             )
             prompt_mode_indicator = f"{current_description}"
             prompt_text = (
-                f"\n{prompt_mode_indicator} Enter text (or mode number to switch): "
+                f"\n{prompt_mode_indicator} Enter text (or mode number to switch)"
             )
             user_input: str = get_user_input(prompt_text).strip()
 
