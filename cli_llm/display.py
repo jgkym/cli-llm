@@ -1,4 +1,3 @@
-import rich
 from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
@@ -26,7 +25,7 @@ def print_refined_output(title: str, content: str):
 
 def print_error(message: str):
     """Prints an error message in a formatted panel."""
-    console.print(Panel(message, title="Error", border_style="red"))
+    console.print(Panel(message, title="Error", style="red", border_style="red"))
 
 
 def get_user_input(prompt_text: str) -> str:
@@ -48,4 +47,4 @@ def print_model_info(model_info: dict):
         table.add_row(key, str(value))
 
     # Print the table to the console
-    rich.print(table)
+    console.print(table)

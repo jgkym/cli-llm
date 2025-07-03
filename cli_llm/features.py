@@ -3,8 +3,8 @@ from typing import Callable
 
 import dspy
 
-import handlers as h
-import signatures as s
+import cli_llm.handlers as h
+import cli_llm.signatures as s
 
 
 @dataclass

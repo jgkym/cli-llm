@@ -1,4 +1,4 @@
-from display import print_refined_output
+from cli_llm.display import print_refined_output
 
 
 def handle_writing_response(response: any) -> None:
