@@ -83,10 +83,10 @@ Follow these steps to get a local copy up and running.
 
 1.  **Run the main script:**
     ```bash
-    python main.py
+    make run
 
     #Or
-    make run
+    uv run python3 -m main
     ```
 2.  **Select an initial mode:** Enter the number corresponding to the feature you want to use. (e.g., `0` for `Summarize`, `1` for `Refine`, `2` for `YourNewFeature`)
 3.  **Enter your text:** Type or paste the text you want the LLM to process.
