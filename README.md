@@ -1,7 +1,7 @@
 <div align='center'>
 <h1>cli-llm</h1>
 
-[![Release: 2025.7.0](https://img.shields.io/badge/Release-2025.7.0-blue.svg)]()
+[![Release: v2025.7.0](https://img.shields.io/badge/Release-v2025.7.0-blue.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 </div>
 
@@ -153,6 +153,10 @@ def activate_features() -> List[Feature]:
 ```
 
 That's it! The application will automatically pick up the new feature the next time you run it.
+
+## Bonus
+
+To fully leverage the power of cli-llm, you can create a shortcut to quickly bring up the background terminal using [`Hammerspoon`](https://www.hammerspoon.org/). Here's a [sample configuration](init.lua) that uses [`Warp`](https://www.warp.dev/) and binds `cmd + e + e` to instantly bring the terminal to the front.
 
 ## Contributing
 
