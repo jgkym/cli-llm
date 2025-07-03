@@ -3,9 +3,9 @@ import warnings
 import dspy
 from dotenv import load_dotenv
 
-from config import Config
-from display import get_user_input, print_error, print_model_info, print_welcome
-from features import Feature, activate_features
+from cli_llm.config import Config
+from cli_llm.display import get_user_input, print_error, print_model_info, print_welcome
+from cli_llm.features import Feature, activate_features
 
 # --- Configuration ---
 
@@ -47,11 +47,11 @@ def main(config: Config) -> None:
         try:
             # Determine prompt based on current mode
             current_description = (
-                feature_map[current_mode].description
+                f"[bold orchid2]{feature_map[current_mode].description}[/bold orchid2]"
                 if current_mode
-                else "No Mode Selected"
+                else "[bold bright_black]No Mode Selected[/bold bright_black]"
             )
-            prompt_mode_indicator = f"[{current_description}]"
+            prompt_mode_indicator = f"{current_description}"
             prompt_text = (
                 f"\n{prompt_mode_indicator} Enter text (or mode number to switch): "
             )
@@ -63,7 +63,7 @@ def main(config: Config) -> None:
                 and len(user_input) < config.minimum_input_length
             ):
                 print_error(
-                    f"Input too short. Please enter at least {config.minimum_input_length} characters."
+                    f"⚠️  Input too short. Please enter at least {config.minimum_input_length} characters."
                 )
                 user_input = get_user_input(prompt_text).strip()
 
