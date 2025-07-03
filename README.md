@@ -1,6 +1,7 @@
 <div align='center'>
 <h1>cli-llm</h1>
 
+[![Release: 2025.7.0](https://img.shields.io/badge/Release-2025.7.0-blue.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 </div>
 
@@ -18,19 +19,35 @@ Instead of copying text to a separate web UI or application, you can use pre-def
 
 ## Features
 
-* **Supercharge CLI Workflows:** Integrate LLM assistance without leaving your terminal.
-* **Customizable Presets:** Easily define and switch between frequently used LLM interaction modes (e.g., question & answer, technical writing improvement, commit message generation). The included example demonstrates modes for:
-    * Asking (`ask`)
-    * Formal Writing (`writing`)
-    * Commit Messages (`commit`)
-* **Mode Persistence:** Stay in a specific interaction mode (like 'writing' or 'commit') for multiple messages until you explicitly switch.
-* **DSPy Powered:** Leverages the DSPy framework for robust LLM interaction, allowing structured programming over simple prompting.
-* **Boilerplate Structure:** Provides a clean foundation to add your own custom LLM-powered CLI features.
+*   **Supercharge CLI Workflows:** Integrate LLM assistance without leaving your terminal.
+*   **Rich CLI Experience:** Uses the `rich` library for a modern, visually appealing interface with formatted panels and colors.
+*   **Customizable Presets:** Easily define and switch between frequently used LLM interaction modes. The included example demonstrates modes for:
+    *   Asking (`ask`)
+    *   Formal Writing (`writing`)
+    *   Commit Messages (`commit`)
+*   **Mode Persistence:** Stay in a specific interaction mode for multiple messages until you explicitly switch.
+*   **DSPy Powered:** Leverages the DSPy framework for robust LLM interaction, allowing structured programming over simple prompting.
+*   **Modular & Extensible:** The codebase is broken into logical modules, making it easy to add new features or change existing ones.
 
 ## Technology Stack
 
-* **[DSPy](https://dspy.ai/):** The core framework for programming foundation models. It allows for structured interaction, optimization ("compilation"), and composability of LLM modules.
-* **LLM Backend:** Configurable to use [various LLM providers](https://dspy.ai/learn/programming/language_models/) (e.g., Gemini, OpenAI, Anthropic) supported by DSPy via environment variables. The current example uses Gemini.
+*   **[DSPy](https://dspy.ai/):** The core framework for programming foundation models.
+*   **[Rich](https://github.com/Textualize/rich):** For beautiful and readable formatting in the terminal.
+*   **LLM Backend:** Configurable to use various LLM providers (e.g., Gemini, OpenAI) supported by DSPy.
+
+## Project Structure
+
+The project is organized into several modules to separate concerns and make it easier to extend:
+
+```
+/
+├── main.py            # Main application entry point, handles user interaction and mode switching.
+├── config.py          # Central configuration for the application (e.g., LM settings).
+├── features.py        # Defines the available features (modes) and their configurations.
+├── signatures.py      # Contains all DSPy signatures for different tasks.
+├── handlers.py        # Functions to process and format the responses from the LLM.
+└── display.py         # Manages the CLI display using the `rich` library for better UI.
+```
 
 ## Getting Started
 
@@ -38,60 +55,104 @@ Follow these steps to get a local copy up and running.
 
 ### Prerequisites
 
-* [uv](https://docs.astral.sh/uv/getting-started/installation/) (Python package installer)
-
+*   [uv](https://docs.astral.sh/uv/getting-started/installation/) (Python package installer)
 
 ### Installation
 
-1.  **Clone the repository (or download the files):**
+1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/jgkym/cli-llm  
+    git clone https://github.com/jgkym/cli-llm
     cd cli-llm
     ```
 2.  **Install dependencies:**
     ```bash
-    uv sync
+    uv sync --upgrade
     ```
-    
 3.  **Set up Environment Variables:**
-    * Create a environment file:
+    *   Create an environment file:
         ```bash
         touch .env
         ```
-    * Edit the `.env` file and add your API key(s). For the current example using Gemini: 
+    *   Edit the `.env` file and add your API key. For Gemini:
         ```dotenv
         # .env
-        GEMINI_API_KEY=YOUR_API_KEY_HERE 
+        GEMINI_API_KEY=YOUR_API_KEY_HERE
         ```
-        *(Adapt variable names if using different providers/configurations in DSPy)*
 
 ## Usage
 
 1.  **Run the main script:**
     ```bash
     python main.py
+
+    #Or
+    make run
     ```
-2.  **Select an initial mode:** Enter `1`, `2`, or `3` when prompted.
-3.  **Enter your text:** Type or paste the text you want the LLM to process according to the current mode.
-4.  **View the output:** The script will print the refined text, an explanation, and potentially suggestions.
-5.  **Continue messaging:** Enter more text to process using the *same* mode.
-6.  **Switch modes:** Enter `1`, `2`, or `3` at the prompt to change the active LLM processing mode.
-7.  **Exit:** Press `Enter` on an empty line.
-
-## Configuration
-
-* **API Keys:** Managed via the `.env` file.
-* **LLM Models:** Model names (e.g., `'gemini/gemini-2.5-flash-preview-04-17'`) are specified directly within the `main.py` script when initializing `dspy.LM`. You can change these to other models supported by your provider and DSPy.
-* **DSPy Settings:** Temperature and other LM parameters are also set during `dspy.LM` initialization in `main.py`.
+2.  **Select an initial mode:** Enter the number corresponding to the feature you want to use. (e.g., `0` for `Summarize`, `1` for `Refine`, `2` for `YourNewFeature`)
+3.  **Enter your text:** Type or paste the text you want the LLM to process.
+4.  **View the output:** The script will print the refined text in a clean, formatted panel.
+5.  **Switch modes:** Enter `0`, `1`, or `2` at the prompt to change the active mode.
+6.  **Exit:** Press `Enter` on an empty line.
 
 ## Customization / Extending
 
-Adding a new feature/mode is straightforward:
+The modular design makes it easy to add a new feature. If you're new to DSPy, there's no need to worry! It's very straightforward to learn, and [an intuitive guide](https://dspy.ai/learn/) is provided to help you get started.  
 
-1.  **Define a Signature:** Create a new class inheriting from `dspy.Signature` in `main.py` (or a separate file) that defines the input and output fields for your new feature.
-2.  **Create a Predictor:** Initialize a DSPy module (e.g., `dspy.ChainOfThought(YourNewSignature)`) in `main.py`.
-3.  **Add Mode Mapping:** Assign a number to your new mode in the `mode_map` and `mode_descriptions` dictionaries in `main.py`.
-4.  **Update Main Loop:** Add an `elif` condition in the `while True` loop in `main.py` to handle the new mode number, call your new predictor, and use `print_response` (or custom logic) to display the results.
+### 0. Configuration
+
+You can configure LLMs and other settings in `config.py`. See [this link](https://dspy.ai/api/models/LM/) for details on LLM settings.
+
+
+### 1. Define a Signature
+
+In `signatures.py`, create a new class inheriting from `dspy.Signature` that defines the input and output fields for your new feature.
+
+```python
+# signatures.py
+class YourNewSignature(dspy.Signature):
+    """A brief description of what this signature does."""
+    input_text: str = dspy.InputField(desc="Description of the input")
+    output_text: str = dspy.OutputField(desc="Description of the output")
+```
+
+### 2. Create a Response Handler
+
+In `handlers.py`, add a new function to format and display the output from your new signature. Use the functions from `display.py` to maintain a consistent UI. You can also directly allow a `lambda` function to handle the response.
+
+```python
+# handlers.py
+from display import print_refined_output
+
+def handle_your_new_feature(response: any) -> None:
+    """Formats and prints the response for your new feature."""
+    print_refined_output("Title for Your Feature", response.output_text)
+```
+
+### 3. Activate the Feature
+
+In `features.py`, import your new signature and handler. Then, in the `activate_features` function, add a new `Feature` instance to the list. The order in the list determines the selection number.
+
+```python
+# features.py
+from signatures import YourNewSignature
+from handlers import handle_your_new_feature
+
+def activate_features() -> List[Feature]:
+    features = [
+        # ... existing features
+        Feature(
+            name="your_feature_name",
+            description="A short description for the menu",
+            signature=YourNewSignature,
+            input_field="input_text",  # Must match the InputField in your signature
+            response_handler=handle_your_new_feature,
+            number=777,  # The number for selection in the menu
+        ),
+    ]
+    # ... rest of the function
+```
+
+That's it! The application will automatically pick up the new feature the next time you run it.
 
 ## Contributing
 
