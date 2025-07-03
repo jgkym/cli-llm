@@ -96,7 +96,7 @@ Follow these steps to get a local copy up and running.
 
 ## Customization / Extending
 
-The modular design makes it easy to add a new feature. If you're new to DSPy, there's no need to worry! It's very straightforward to learn, and [an intuitive guide](https://dspy.ai/learn/) is provided to help you get started.  
+The modular design makes it easy to use your own features. If you're new to DSPy, there's no need to worry! It's very straightforward to learn, and [the official guide](https://dspy.ai/learn/) is provided to help you get started.
 
 ### 0. Configuration
 
@@ -156,7 +156,7 @@ That's it! The application will automatically pick up the new feature the next t
 
 ## Bonus
 
-To fully leverage the power of cli-llm, you can create a shortcut to quickly bring up the background terminal using [`Hammerspoon`](https://www.hammerspoon.org/). Here's a [sample configuration](init.lua) that uses [`Warp`](https://www.warp.dev/) and binds `cmd + e + e` to instantly bring the terminal to the front.
+To fully leverage the power of `cli-llm`, you can create a shortcut to quickly bring up the background terminal using [`Hammerspoon`](https://www.hammerspoon.org/). Here's a [sample configuration](init.lua) that uses [`Warp`](https://www.warp.dev/) and binds `cmd + e + e` to instantly bring the terminal to the front.
 
 ## Contributing
 
